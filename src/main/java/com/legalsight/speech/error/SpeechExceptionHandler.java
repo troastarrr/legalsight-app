@@ -19,30 +19,27 @@ public class SpeechExceptionHandler {
     public ResponseEntity<SpeechError> handleSpeechNotFoundException(SpeechNotFoundException e) {
         log.warn("Speech not found error: `{}`", e.getMessage());
         SpeechError response = new SpeechError()
-                .errorCode("SPEECH_NOT_FOUND")
-                .messages(List.of(e.getMessage()));
+                .errorCode(SpeechErrorCode.SPEECH_NOT_FOUND)
+                .errorMessages(List.of(e.getMessage()));
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
     public ResponseEntity<SpeechError> handleConstraintViolationException(MethodArgumentNotValidException e) {
         log.warn("Validation error occurred: `{}`", e.getMessage());
-
         List<String> errorMessages = getValidationErrorMessages(e);
-
         SpeechError response = new SpeechError()
-                .errorCode("VALIDATION_ERROR_OCCURRED")
-                .messages(errorMessages);
-
+                .errorCode(SpeechErrorCode.VALIDATION_ERROR)
+                .errorMessages(errorMessages);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     public ResponseEntity<SpeechError> handleGenericException(Exception e) {
-        log.warn("Unknown error occurred: `{}`", e.getMessage());
+        log.warn("Internal server error occurred: `{}`", e.getMessage());
         SpeechError response = new SpeechError()
-                .errorCode("UNKNOWN_ERROR_OCCURRED")
-                .messages(List.of(e.getMessage()));
+                .errorCode(SpeechErrorCode.SERVER_ERROR)
+                .errorMessages(List.of(e.getMessage()));
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -57,7 +54,7 @@ public class SpeechExceptionHandler {
     }
 
     private String buildErrorMessage(String fieldName, String message) {
-        return String.format("%s %s", fieldName, message);
+        return String.format("`%s` `%s`", fieldName, message);
     }
 
 }

@@ -128,7 +128,6 @@ class SpeechServiceTest {
         SpeechFilterRequest filterRequest = new SpeechFilterRequest();
         filterRequest.setPage(1);
         filterRequest.setPerPage(10);
-        PageRequest pageRequest = PageRequest.of(filterRequest.getPage(), filterRequest.getPerPage());
         SpeechEntity speechEntity = new SpeechEntity();
         Page<SpeechEntity> speechEntities = new PageImpl<>(Collections.singletonList(speechEntity));
         when(speechRepository.findAll(any(SpeechSpecification.class), any(PageRequest.class))).thenReturn(speechEntities);

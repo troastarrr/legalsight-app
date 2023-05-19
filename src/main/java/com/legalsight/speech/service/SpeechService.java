@@ -27,20 +27,20 @@ public class SpeechService {
 
     @Transactional
     public Speech createSpeech(Speech speech) {
-        log.debug("Creating speech: `{}`", speech);
+        log.debug("Creating speech `{}`", speech);
         SpeechEntity speechEntity = speechRepository.save(speechMapper.toEntity(speech));
         return speechMapper.toDto(speechEntity);
     }
 
     public Speech findSpeechById(String id) {
-        log.debug("Finding speech by id: `{}`", id);
+        log.debug("Finding speech by id `{}`", id);
         SpeechEntity speechEntity = findSpeechEntityById(id);
         return speechMapper.toDto(speechEntity);
     }
 
     @Transactional
     public Speech updateSpeech(Speech speech) {
-        log.debug("Updating speech: `{}`", speech);
+        log.debug("Updating speech `{}`", speech);
         SpeechEntity speechEntity = findSpeechEntityById(speech.getId());
         speechMapper.update(speech, speechEntity);
         speechEntity = speechRepository.save(speechEntity);
@@ -50,15 +50,15 @@ public class SpeechService {
     @Transactional
     public void deleteSpeech(String id) {
         if (speechRepository.existsById(id)) {
-            log.debug("Deleting speech with id: `{}`", id);
+            log.debug("Deleting speech with id `{}`", id);
             speechRepository.deleteById(id);
         } else {
-            log.debug("Speech with id {} does not exist", id);
+            log.debug("Speech with id `{}` does not exist", id);
         }
     }
 
     public SpeechesResponse searchSpeeches(SpeechFilterRequest filterRequest) {
-        log.debug("Searching speeches with filter: `{}`", filterRequest);
+        log.debug("Searching speeches with filter `{}`", filterRequest);
         Page<SpeechEntity> speechEntities = speechRepository.findAll(new SpeechSpecification(filterRequest), filterRequest.pageRequest());
         List<Speech> speeches = speechEntities.map(speechMapper::toDto).toList();
         return new SpeechesResponse(speeches)
@@ -69,6 +69,6 @@ public class SpeechService {
 
     private SpeechEntity findSpeechEntityById(String id) {
         return speechRepository.findById(id)
-                .orElseThrow(() -> new SpeechNotFoundException(String.format("Speech not found with id: %s", id)));
+                .orElseThrow(() -> new SpeechNotFoundException(String.format("Speech not found with id: `%s`", id)));
     }
 }

@@ -16,8 +16,8 @@ import java.util.UUID;
 @Getter(onMethod = @__(@JsonProperty))
 public class SpeechError {
     private static final DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    private List<String> messages;
-    private String errorCode;
+    private List<String> errorMessages;
+    private SpeechErrorCode errorCode;
     private String errorReferenceId = UUID.randomUUID().toString();
     private String timestamp = LocalDateTime.now(Clock.systemUTC()).format(TIMESTAMP_FORMAT);
 }

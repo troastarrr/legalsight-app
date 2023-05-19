@@ -22,8 +22,8 @@ class SpeechExceptionHandlerTest {
         // Then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().errorCode()).isEqualTo("SPEECH_NOT_FOUND");
-        assertThat(responseEntity.getBody().messages()).containsOnly("Speech not found");
+        assertThat(responseEntity.getBody().errorCode()).isEqualTo(SpeechErrorCode.SPEECH_NOT_FOUND);
+        assertThat(responseEntity.getBody().errorMessages()).containsOnly("Speech not found");
     }
 
     @Test
@@ -39,8 +39,8 @@ class SpeechExceptionHandlerTest {
         // Then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().errorCode()).isEqualTo("UNKNOWN_ERROR_OCCURRED");
-        assertThat(responseEntity.getBody().messages()).containsOnly("Unknown error");
+        assertThat(responseEntity.getBody().errorCode()).isEqualTo(SpeechErrorCode.SERVER_ERROR);
+        assertThat(responseEntity.getBody().errorMessages()).containsOnly("Unknown error");
     }
 
 }

@@ -3,10 +3,10 @@ logging:
     liquibase: INFO
 spring:
   datasource:
-    db: legalsight_db
-    url: jdbc:mysql://gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/${spring.datasource.db} #Using my public tidb account
-    username: 2hNHqE9knzZebPF.root
-    password: kttPx7WUo7GwxlLr
+    db: add_value_here
+    url: add_value_here
+    username: add_value_here
+    password: add_value_here
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect

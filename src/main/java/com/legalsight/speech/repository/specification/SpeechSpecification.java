@@ -30,12 +30,12 @@ public class SpeechSpecification implements Specification<SpeechEntity> {
             hasAuthor(root, criteriaBuilder, predicates, speech);
             hasSpeechDate(root, criteriaBuilder, predicates, speech);
             hasSubjectArea(root, criteriaBuilder, predicates, speech);
-            hasText(root, criteriaBuilder, predicates, speech);
+            hasSpeechText(root, criteriaBuilder, predicates, speech);
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
 
-    private void hasText(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
+    private void hasSpeechText(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
         if (speech.getSpeechText() != null) {
             predicates.add(criteriaBuilder.like(root.get(SpeechEntity_.SPEECH_TEXT), "%" + speech.getSpeechText() + "%"));
         }

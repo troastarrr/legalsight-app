@@ -19,18 +19,18 @@ public class SpeechControllerImpl implements SpeechController {
 
     @Override
     public ResponseEntity<Speech> find(final String id) {
-        return ResponseEntity.ok(service.findById(id));
+        return ResponseEntity.ok(service.findSpeechById(id));
     }
 
     @Override
     public ResponseEntity<Speech> add(final Speech speech) {
-        return ResponseEntity.ok(service.add(speech));
+        return ResponseEntity.ok(service.createSpeech(speech));
     }
 
     @Override
     public ResponseEntity<Speech> update(final String id, final Speech speech) {
         speech.setId(id);
-        return ResponseEntity.ok(service.update(speech));
+        return ResponseEntity.ok(service.updateSpeech(speech));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class SpeechControllerImpl implements SpeechController {
         request.setPerPage(perPage);
         request.setSortBy(sortBy);
         request.setSortDir(sortDir);
-        return ResponseEntity.ok(service.findByFilter(request));
+        return ResponseEntity.ok(service.searchSpeeches(request));
     }
 
     @Override
@@ -71,7 +71,7 @@ public class SpeechControllerImpl implements SpeechController {
         request.setPerPage(perPage);
         request.setSortBy(sortBy);
         request.setSortDir(sortDir);
-        return ResponseEntity.ok(service.findByFilter(request));
+        return ResponseEntity.ok(service.searchSpeeches(request));
     }
 
 }

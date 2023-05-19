@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,6 +23,7 @@ import org.springframework.data.domain.PageRequest;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -50,7 +50,7 @@ class SpeechServiceTest {
         when(speechMapper.toDto(any())).thenReturn(speech);
 
         // When
-        Speech result = speechService.add(speech);
+        Speech result = speechService.createSpeech(speech);
 
         // Then
         assertThat(result).isEqualTo(speech);
@@ -68,7 +68,7 @@ class SpeechServiceTest {
         when(speechMapper.toDto(speechEntity)).thenReturn(speech);
 
         // When
-        Speech result = speechService.findById(id);
+        Speech result = speechService.findSpeechById(id);
 
         // Then
         assertThat(result).isEqualTo(speech);
@@ -82,10 +82,10 @@ class SpeechServiceTest {
         when(speechRepository.findById(id)).thenReturn(java.util.Optional.empty());
 
         // Then
-        org.junit.jupiter.api.Assertions.assertThrows(SpeechNotFoundException.class, () -> {
+        assertThatThrownBy(() -> {
             // When
-            speechService.findById(id);
-        });
+            speechService.findSpeechById(id);
+        }).isInstanceOf(SpeechNotFoundException.class);
     }
 
     @Test
@@ -100,7 +100,7 @@ class SpeechServiceTest {
         when(speechMapper.toDto(speechEntityToUpdate)).thenReturn(speech);
 
         // When
-        Speech result = speechService.update(speech);
+        Speech result = speechService.updateSpeech(speech);
 
         // Then
         assertThat(result).isEqualTo(speech);
@@ -119,7 +119,7 @@ class SpeechServiceTest {
         speechService.deleteSpeech(id);
 
         // Then
-        Mockito.verify(speechRepository).deleteById(id);
+        verify(speechRepository).deleteById(id);
     }
 
     @Test
@@ -136,7 +136,7 @@ class SpeechServiceTest {
         when(speechMapper.toDto(speechEntity)).thenReturn(new Speech());
 
         // When
-        SpeechListResponse result = speechService.findByFilter(filterRequest);
+        SpeechListResponse result = speechService.searchSpeeches(filterRequest);
 
         // Then
         assertThat(result.data()).hasSize(1);

@@ -39,7 +39,7 @@ class SpeechControllerImplTest {
         // Given
         String speechId = "123";
         Speech expectedSpeech = new Speech();
-        when(speechService.findById(speechId)).thenReturn(expectedSpeech);
+        when(speechService.findSpeechById(speechId)).thenReturn(expectedSpeech);
 
         // When
         ResponseEntity<Speech> response = speechController.find(speechId);
@@ -47,7 +47,7 @@ class SpeechControllerImplTest {
         // Then
         assertThat(response.getBody()).isEqualTo(expectedSpeech);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(speechService, times(1)).findById(speechId);
+        verify(speechService, times(1)).findSpeechById(speechId);
     }
 
     @Test
@@ -56,7 +56,7 @@ class SpeechControllerImplTest {
         // Given
         Speech speechToAdd = new Speech();
         Speech expectedSpeech = new Speech();
-        when(speechService.add(speechToAdd)).thenReturn(expectedSpeech);
+        when(speechService.createSpeech(speechToAdd)).thenReturn(expectedSpeech);
 
         // When
         ResponseEntity<Speech> response = speechController.add(speechToAdd);
@@ -64,7 +64,7 @@ class SpeechControllerImplTest {
         // Then
         assertThat(response.getBody()).isEqualTo(expectedSpeech);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(speechService, times(1)).add(speechToAdd);
+        verify(speechService, times(1)).createSpeech(speechToAdd);
     }
 
     @Test
@@ -74,7 +74,7 @@ class SpeechControllerImplTest {
         String speechId = "123";
         Speech speechToUpdate = new Speech();
         Speech expectedSpeech = new Speech();
-        when(speechService.update(speechToUpdate)).thenReturn(expectedSpeech);
+        when(speechService.updateSpeech(speechToUpdate)).thenReturn(expectedSpeech);
 
         // When
         ResponseEntity<Speech> response = speechController.update(speechId, speechToUpdate);
@@ -82,7 +82,7 @@ class SpeechControllerImplTest {
         // Then
         assertThat(response.getBody()).isEqualTo(expectedSpeech);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(speechService, times(1)).update(speechToUpdate);
+        verify(speechService, times(1)).updateSpeech(speechToUpdate);
     }
 
     @Test
@@ -126,7 +126,7 @@ class SpeechControllerImplTest {
 
         List<Speech> expectedSpeeches = Arrays.asList(new Speech(), new Speech());
         SpeechListResponse expectedResponse = new SpeechListResponse(expectedSpeeches);
-        when(speechService.findByFilter(any(SpeechFilterRequest.class))).thenReturn(expectedResponse);
+        when(speechService.searchSpeeches(any(SpeechFilterRequest.class))).thenReturn(expectedResponse);
 
         // When
         ResponseEntity<SpeechListResponse> response = speechController.search(
@@ -136,7 +136,7 @@ class SpeechControllerImplTest {
         // Then
         assertThat(response.getBody()).isEqualTo(expectedResponse);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(speechService, times(1)).findByFilter(any(SpeechFilterRequest.class));
+        verify(speechService, times(1)).searchSpeeches(any(SpeechFilterRequest.class));
     }
 
     @Test
@@ -156,7 +156,7 @@ class SpeechControllerImplTest {
 
         List<Speech> expectedSpeeches = Arrays.asList(new Speech(), new Speech());
         SpeechListResponse expectedResponse = new SpeechListResponse(expectedSpeeches);
-        when(speechService.findByFilter(any(SpeechFilterRequest.class))).thenReturn(expectedResponse);
+        when(speechService.searchSpeeches(any(SpeechFilterRequest.class))).thenReturn(expectedResponse);
 
         // When
         ResponseEntity<SpeechListResponse> response = speechController.findAll(
@@ -166,7 +166,7 @@ class SpeechControllerImplTest {
         // Then
         assertThat(response.getBody()).isEqualTo(expectedResponse);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(speechService, times(1)).findByFilter(any(SpeechFilterRequest.class));
+        verify(speechService, times(1)).searchSpeeches(any(SpeechFilterRequest.class));
     }
 
 }

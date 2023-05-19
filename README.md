@@ -92,7 +92,7 @@ Retrieves all speeches.
 
 - **Endpoint:** `GET /speeches/v1`
 - **Description:** Retrieve all speeches.
-- **Tags:** Speeches
+- **Tags:** Speech
 
 ## Request Parameters
 

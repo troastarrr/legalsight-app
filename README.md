@@ -103,7 +103,7 @@ The following request parameters are used in the API endpoints:
 - `speech_text` (query parameter, optional): The text content of the speech.
 - `subject_area` (query parameter, optional): The subject area of the speech.
 - `speech_date` (query parameter, optional): The date of the speech.
-- `per_page` (query parameter, optional, default: 10): The number of results per page.
+- `per_page` (query parameter, optional, default: 50): The number of results per page.
 - `page` (query parameter, optional, default: 1): The page number.
 - `sort_by` (query parameter, optional, default: author): The field to sort the results by.
 - `sort_dir` (query parameter, optional, default: desc): The sorting direction (asc for ascending, desc for descending).

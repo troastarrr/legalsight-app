@@ -1,10 +1,9 @@
-package com.legalsight.repository.specification;
+package com.legalsight.speech.repository.specification;
 
 
 import com.legalsight.speech.domain.Speech;
 import com.legalsight.speech.dto.SpeechFilterRequest;
 import com.legalsight.speech.repository.entity.SpeechEntity;
-import com.legalsight.speech.repository.specification.SpeechSpecification;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;

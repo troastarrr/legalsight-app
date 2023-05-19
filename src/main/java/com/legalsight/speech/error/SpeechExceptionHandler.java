@@ -1,8 +1,6 @@
 package com.legalsight.speech.error;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -15,7 +13,6 @@ import java.util.List;
 
 @ControllerAdvice
 @Slf4j
-@Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class SpeechExceptionHandler {
 
     @ExceptionHandler

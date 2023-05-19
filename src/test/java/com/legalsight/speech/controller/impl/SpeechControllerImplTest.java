@@ -1,6 +1,5 @@
-package com.legalsight.controller.impl;
+package com.legalsight.speech.controller.impl;
 
-import com.legalsight.speech.controller.impl.SpeechControllerImpl;
 import com.legalsight.speech.domain.Speech;
 import com.legalsight.speech.dto.SpeechFilterRequest;
 import com.legalsight.speech.dto.SpeechListResponse;

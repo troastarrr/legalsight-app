@@ -1,8 +1,7 @@
-package com.legalsight.mapper;
+package com.legalsight.speech.mapper;
 
 
 import com.legalsight.speech.domain.Speech;
-import com.legalsight.speech.mapper.SpeechMapper;
 import com.legalsight.speech.repository.entity.SpeechEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

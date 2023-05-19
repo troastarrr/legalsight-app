@@ -1,7 +1,7 @@
 package com.legalsight.speech.controller;
 
 import com.legalsight.speech.domain.Speech;
-import com.legalsight.speech.dto.SpeechListResponse;
+import com.legalsight.speech.dto.SpeechesResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -39,19 +39,19 @@ public interface SpeechController {
 
     @GetMapping("/search")
     @Operation(summary = "Search Speeches", description = "Retrieve a list of speeches based on the provided filter", tags = "Speech")
-    ResponseEntity<SpeechListResponse> search(@RequestParam(value = "author", required = false) final String author,
-                                              @RequestParam(value = "speech_text", required = false) final String speechText,
-                                              @RequestParam(value = "subject_area", required = false) final String subjectArea,
-                                              @RequestParam(value = "speech_date", required = false) final LocalDate speechDate,
-                                              @RequestParam(value = "per_page", required = false, defaultValue = "50") final int perPage,
-                                              @RequestParam(value = "page", required = false, defaultValue = "1") final int page,
-                                              @RequestParam(value = "sort_by", required = false, defaultValue = "author") final String sortBy,
-                                              @RequestParam(value = "sort_dir", required = false, defaultValue = "desc") final String sortDir);
+    ResponseEntity<SpeechesResponse> search(@RequestParam(value = "author", required = false) final String author,
+                                            @RequestParam(value = "speech_text", required = false) final String speechText,
+                                            @RequestParam(value = "subject_area", required = false) final String subjectArea,
+                                            @RequestParam(value = "speech_date", required = false) final LocalDate speechDate,
+                                            @RequestParam(value = "per_page", required = false, defaultValue = "50") final int perPage,
+                                            @RequestParam(value = "page", required = false, defaultValue = "1") final int page,
+                                            @RequestParam(value = "sort_by", required = false, defaultValue = "author") final String sortBy,
+                                            @RequestParam(value = "sort_dir", required = false, defaultValue = "desc") final String sortDir);
 
     @GetMapping
     @Operation(summary = "Find All Speeches", description = "Retrieve all speeches", tags = "Speech")
-    ResponseEntity<SpeechListResponse> findAll(@RequestParam(value = "per_page", required = false, defaultValue = "50") final int perPage,
-                                               @RequestParam(value = "page", required = false, defaultValue = "1") final int page,
-                                               @RequestParam(value = "sort_by", required = false, defaultValue = "author") final String sortBy,
-                                               @RequestParam(value = "sort_dir", required = false, defaultValue = "desc") final String sortDir);
+    ResponseEntity<SpeechesResponse> findAll(@RequestParam(value = "per_page", required = false, defaultValue = "50") final int perPage,
+                                             @RequestParam(value = "page", required = false, defaultValue = "1") final int page,
+                                             @RequestParam(value = "sort_by", required = false, defaultValue = "author") final String sortBy,
+                                             @RequestParam(value = "sort_dir", required = false, defaultValue = "desc") final String sortDir);
 }

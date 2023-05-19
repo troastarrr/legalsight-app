@@ -3,7 +3,7 @@ package com.legalsight.speech.service;
 
 import com.legalsight.speech.domain.Speech;
 import com.legalsight.speech.dto.SpeechFilterRequest;
-import com.legalsight.speech.dto.SpeechListResponse;
+import com.legalsight.speech.dto.SpeechesResponse;
 import com.legalsight.speech.error.SpeechNotFoundException;
 import com.legalsight.speech.mapper.SpeechMapper;
 import com.legalsight.speech.repository.SpeechRepository;
@@ -135,7 +135,7 @@ class SpeechServiceTest {
         when(speechMapper.toDto(speechEntity)).thenReturn(new Speech());
 
         // When
-        SpeechListResponse result = speechService.searchSpeeches(filterRequest);
+        SpeechesResponse result = speechService.searchSpeeches(filterRequest);
 
         // Then
         assertThat(result.data()).hasSize(1);

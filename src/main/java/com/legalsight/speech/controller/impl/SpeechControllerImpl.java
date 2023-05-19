@@ -3,7 +3,7 @@ package com.legalsight.speech.controller.impl;
 import com.legalsight.speech.controller.SpeechController;
 import com.legalsight.speech.domain.Speech;
 import com.legalsight.speech.dto.SpeechFilterRequest;
-import com.legalsight.speech.dto.SpeechListResponse;
+import com.legalsight.speech.dto.SpeechesResponse;
 import com.legalsight.speech.service.SpeechService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class SpeechControllerImpl implements SpeechController {
     }
 
     @Override
-    public ResponseEntity<Speech> add(final Speech speech) {
+    public ResponseEntity<Speech> create(final Speech speech) {
         return ResponseEntity.ok(service.createSpeech(speech));
     }
 
@@ -40,14 +40,14 @@ public class SpeechControllerImpl implements SpeechController {
     }
 
     @Override
-    public ResponseEntity<SpeechListResponse> search(final String author,
-                                                     final String speechText,
-                                                     final String subjectArea,
-                                                     final LocalDate speechDate,
-                                                     final int perPage,
-                                                     final int page,
-                                                     final String sortBy,
-                                                     final String sortDir) {
+    public ResponseEntity<SpeechesResponse> search(final String author,
+                                                   final String speechText,
+                                                   final String subjectArea,
+                                                   final LocalDate speechDate,
+                                                   final int perPage,
+                                                   final int page,
+                                                   final String sortBy,
+                                                   final String sortDir) {
         Speech speech = new Speech();
         speech.setSpeechDate(speechDate);
         speech.setSpeechText(speechText);
@@ -62,10 +62,10 @@ public class SpeechControllerImpl implements SpeechController {
     }
 
     @Override
-    public ResponseEntity<SpeechListResponse> findAll(final int perPage,
-                                                      final int page,
-                                                      final String sortBy,
-                                                      final String sortDir) {
+    public ResponseEntity<SpeechesResponse> findAll(final int perPage,
+                                                    final int page,
+                                                    final String sortBy,
+                                                    final String sortDir) {
         SpeechFilterRequest request = new SpeechFilterRequest();
         request.setPage(page);
         request.setPerPage(perPage);

@@ -11,13 +11,13 @@ import java.util.List;
 @Accessors(fluent = true, chain = true)
 @Getter(onMethod = @__(@JsonProperty))
 @Setter
-public class SpeechListResponse {
+public class SpeechesResponse {
     private final List<Speech> data;
     private long totalElements;
     private long totalPages;
     private long currentPage;
 
-    public SpeechListResponse(final List<Speech> data) {
+    public SpeechesResponse(final List<Speech> data) {
         this.data = data;
     }
 }

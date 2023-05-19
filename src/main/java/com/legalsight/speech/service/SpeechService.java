@@ -2,7 +2,7 @@ package com.legalsight.speech.service;
 
 import com.legalsight.speech.domain.Speech;
 import com.legalsight.speech.dto.SpeechFilterRequest;
-import com.legalsight.speech.dto.SpeechListResponse;
+import com.legalsight.speech.dto.SpeechesResponse;
 import com.legalsight.speech.error.SpeechNotFoundException;
 import com.legalsight.speech.mapper.SpeechMapper;
 import com.legalsight.speech.repository.SpeechRepository;
@@ -57,11 +57,11 @@ public class SpeechService {
         }
     }
 
-    public SpeechListResponse searchSpeeches(SpeechFilterRequest filterRequest) {
+    public SpeechesResponse searchSpeeches(SpeechFilterRequest filterRequest) {
         log.debug("Searching speeches with filter: `{}`", filterRequest);
         Page<SpeechEntity> speechEntities = speechRepository.findAll(new SpeechSpecification(filterRequest), filterRequest.pageRequest());
         List<Speech> speeches = speechEntities.map(speechMapper::toDto).toList();
-        return new SpeechListResponse(speeches)
+        return new SpeechesResponse(speeches)
                 .totalElements(speechEntities.getTotalElements())
                 .totalPages(speechEntities.getTotalPages())
                 .currentPage(filterRequest.getPage());

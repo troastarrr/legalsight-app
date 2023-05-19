@@ -2,7 +2,7 @@ package com.legalsight.speech.controller.impl;
 
 import com.legalsight.speech.domain.Speech;
 import com.legalsight.speech.dto.SpeechFilterRequest;
-import com.legalsight.speech.dto.SpeechListResponse;
+import com.legalsight.speech.dto.SpeechesResponse;
 import com.legalsight.speech.service.SpeechService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -124,11 +124,11 @@ class SpeechControllerImplTest {
         filterRequest.setSortDir(sortDir);
 
         List<Speech> expectedSpeeches = Arrays.asList(new Speech(), new Speech());
-        SpeechListResponse expectedResponse = new SpeechListResponse(expectedSpeeches);
+        SpeechesResponse expectedResponse = new SpeechesResponse(expectedSpeeches);
         when(speechService.searchSpeeches(any(SpeechFilterRequest.class))).thenReturn(expectedResponse);
 
         // When
-        ResponseEntity<SpeechListResponse> response = speechController.search(
+        ResponseEntity<SpeechesResponse> response = speechController.search(
                 author, text, subjectArea, speechDate, perPage, page, sortBy, sortDir
         );
 
@@ -154,11 +154,11 @@ class SpeechControllerImplTest {
         filterRequest.setSortDir(sortDir);
 
         List<Speech> expectedSpeeches = Arrays.asList(new Speech(), new Speech());
-        SpeechListResponse expectedResponse = new SpeechListResponse(expectedSpeeches);
+        SpeechesResponse expectedResponse = new SpeechesResponse(expectedSpeeches);
         when(speechService.searchSpeeches(any(SpeechFilterRequest.class))).thenReturn(expectedResponse);
 
         // When
-        ResponseEntity<SpeechListResponse> response = speechController.findAll(
+        ResponseEntity<SpeechesResponse> response = speechController.findAll(
                 perPage, page, sortBy, sortDir
         );
 

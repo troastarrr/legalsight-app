@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,11 +43,10 @@ public class SpeechSpecification implements Specification<SpeechEntity> {
 
     private void hasSpeechDate(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
         Optional.ofNullable(speech.getSpeechDate()).ifPresent(speechDate -> {
-            LocalDate startDate = speechDate.minusDays(1);
-            LocalDate endDate = speechDate.plusDays(1);
-            predicates.add(criteriaBuilder.between(root.get(SpeechEntity_.SPEECH_DATE), startDate, endDate));
+            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get(SpeechEntity_.SPEECH_DATE), speech.getSpeechDate()));
         });
     }
+
 
     private void hasAuthor(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
         Optional.ofNullable(speech.getAuthor()).ifPresent(author -> predicates.add(criteriaBuilder.equal(root.get(SpeechEntity_.AUTHOR), author)));

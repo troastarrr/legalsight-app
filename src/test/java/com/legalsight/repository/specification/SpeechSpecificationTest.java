@@ -7,7 +7,6 @@ import com.legalsight.speech.repository.entity.SpeechEntity;
 import com.legalsight.speech.repository.specification.SpeechSpecification;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Root;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,8 +23,6 @@ class SpeechSpecificationTest {
 
     @Mock
     private Root<SpeechEntity> root;
-    @Mock
-    private Path<Object> path;
     @Mock
     private CriteriaBuilder criteriaBuilder;
     @Mock

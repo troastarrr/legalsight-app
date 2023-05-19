@@ -15,6 +15,7 @@ import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 public class SpeechSpecification implements Specification<SpeechEntity> {
@@ -24,40 +25,32 @@ public class SpeechSpecification implements Specification<SpeechEntity> {
 
     @Override
     public Predicate toPredicate(Root<SpeechEntity> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-
-        if (speechFilterRequest.getSpeech() != null) {
-            Speech speech = speechFilterRequest.getSpeech();
+        Optional.ofNullable(speechFilterRequest.getSpeech()).ifPresent(speech -> {
             hasAuthor(root, criteriaBuilder, predicates, speech);
             hasSpeechDate(root, criteriaBuilder, predicates, speech);
             hasSubjectArea(root, criteriaBuilder, predicates, speech);
             hasSpeechText(root, criteriaBuilder, predicates, speech);
-        }
+        });
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
 
     private void hasSpeechText(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
-        if (speech.getSpeechText() != null) {
-            predicates.add(criteriaBuilder.like(root.get(SpeechEntity_.SPEECH_TEXT), "%" + speech.getSpeechText() + "%"));
-        }
+        Optional.ofNullable(speech.getSpeechText()).ifPresent(speechText -> predicates.add(criteriaBuilder.like(root.get(SpeechEntity_.SPEECH_TEXT), "%" + speechText + "%")));
     }
 
     private void hasSubjectArea(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
-        if (speech.getSubjectArea() != null) {
-            predicates.add(criteriaBuilder.equal(root.get(SpeechEntity_.SUBJECT_AREA), speech.getSubjectArea()));
-        }
+        Optional.ofNullable(speech.getSubjectArea()).ifPresent(subjectArea -> predicates.add(criteriaBuilder.equal(root.get(SpeechEntity_.SUBJECT_AREA), subjectArea)));
     }
 
     private void hasSpeechDate(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
-        if (speech.getSpeechDate() != null) {
-            LocalDate startDate = speech.getSpeechDate().minusDays(1);
-            LocalDate endDate = speech.getSpeechDate().plusDays(1);
+        Optional.ofNullable(speech.getSpeechDate()).ifPresent(speechDate -> {
+            LocalDate startDate = speechDate.minusDays(1);
+            LocalDate endDate = speechDate.plusDays(1);
             predicates.add(criteriaBuilder.between(root.get(SpeechEntity_.SPEECH_DATE), startDate, endDate));
-        }
+        });
     }
 
     private void hasAuthor(Root<SpeechEntity> root, CriteriaBuilder criteriaBuilder, List<Predicate> predicates, Speech speech) {
-        if (speech.getAuthor() != null) {
-            predicates.add(criteriaBuilder.equal(root.get(SpeechEntity_.AUTHOR), speech.getAuthor()));
-        }
+        Optional.ofNullable(speech.getAuthor()).ifPresent(author -> predicates.add(criteriaBuilder.equal(root.get(SpeechEntity_.AUTHOR), author)));
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 public class SpeechService {
-    
+
     private final SpeechMapper speechMapper;
     private final SpeechRepository speechRepository;
 
@@ -46,11 +46,10 @@ public class SpeechService {
 
     @Transactional
     public void deleteSpeech(String id) {
-        log.debug("Deleting speech with id `{}`", id);
         if (speechRepository.existsById(id)) {
+            log.debug("Deleting speech with id `{}`", id);
             speechRepository.deleteById(id);
         }
-        log.debug("Unable to find and delete speech with id `{}`", id);
     }
 
     public SpeechListResponse findByFilter(SpeechFilterRequest speechFilterRequest) {

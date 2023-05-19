@@ -1,6 +1,48 @@
-# Legal Sight App
+# Legal Sight App : Speech API
 
-# Speech API provides endpoints for managing speech transactions.
+The Speech API provides endpoints for managing speech transactions.
+
+## Configuration
+
+To configure the Speech Controller, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Open the project in your preferred IDE.
+3. Configure the application properties located in `src/main/resources/application.properties` according to your
+   environment. You may need to update the database connection details, server port, or any other relevant
+   configuration.
+
+## Building
+
+To build the application using Maven, follow these steps:
+
+1. Open a command-line interface.
+2. Navigate to the root directory of the project.
+3. Run the following command to build the application:
+
+   ```shell
+   mvn clean install
+   ```
+
+   This will compile the source code, run tests, and package the application into an executable JAR file.
+
+## Running
+
+To run the application using Maven, follow these steps:
+
+1. Ensure that the application has been built successfully using the previous "Building" step.
+2. In the command-line interface, navigate to the root directory of the project.
+3. Run the following command to start the application:
+
+   ```shell
+   mvn spring-boot:run
+   ```
+
+   This will start the application, and you will be able to access the API endpoints from a web browser or API testing
+   tool.
+
+4. Once the application is running, you can access the API endpoints by sending HTTP requests to the appropriate URLs,
+   as described in the "API Endpoints" section of this README.
 
 ## API Endpoints
 
@@ -71,7 +113,7 @@ The following request parameters are used in the API endpoints:
 The API endpoints return various response types based on the operation:
 
 - `ResponseEntity<Speech>`: Response containing a single speech object.
-- `ResponseEntity<SpeechListResponse>`: Response containing a list of speeches with pagination information.
+- `ResponseEntity<SpeechesReponse>`: Response containing a list of speeches with pagination information.
 - `ResponseEntity<Void>`: Empty response indicating a successful deletion.
 
 ## Error Handling
@@ -81,8 +123,3 @@ The Speech Controller handles the following error scenarios:
 - `SpeechNotFoundException`: Returns a 404 Not Found response with an appropriate error message.
 - `MethodArgumentNotValidException`: Returns a 400 Bad Request response with validation error messages.
 - Other Exceptions: Returns a 500 Internal Server Error response with an error message.
-
-Please refer to the respective API endpoint descriptions for more details on their functionality and usage.
-
-Feel free to customize and enhance this README file to provide more specific information or instructions based on your
-project requirements.

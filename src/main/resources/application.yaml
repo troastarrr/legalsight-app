@@ -3,7 +3,7 @@ logging:
     liquibase: INFO
 spring:
   datasource:
-    url: jdbc:mysql://gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/legalsight_db
+    url: jdbc:mysql://gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/legalsight_db #Using my public tidb account
     username: 2hNHqE9knzZebPF.root
     password: kttPx7WUo7GwxlLr
     driver-class-name: com.mysql.cj.jdbc.Driver

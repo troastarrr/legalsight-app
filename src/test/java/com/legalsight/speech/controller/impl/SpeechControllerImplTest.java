@@ -58,7 +58,7 @@ class SpeechControllerImplTest {
         when(speechService.createSpeech(speechToAdd)).thenReturn(expectedSpeech);
 
         // When
-        ResponseEntity<Speech> response = speechController.add(speechToAdd);
+        ResponseEntity<Speech> response = speechController.create(speechToAdd);
 
         // Then
         assertThat(response.getBody()).isEqualTo(expectedSpeech);

@@ -8,7 +8,7 @@ To configure the Speech Controller, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Open the project in your preferred IDE.
-3. Configure the application properties located in `src/main/resources/application.properties` according to your
+3. Configure the application yaml located in `src/main/resources/application.yaml` according to your
    environment. You may need to update the database connection details, server port, or any other relevant
    configuration.
 
@@ -50,7 +50,7 @@ To run the application using Maven, follow these steps:
 
 Retrieves an existing speech by ID.
 
-- **Endpoint:** `GET /speeches/v1/{id}`
+- **Endpoint:** `GET /legal-sight/speeches/v1/{id}`
 - **Description:** Retrieve an existing speech by ID.
 - **Tags:** Speech
 
@@ -58,7 +58,7 @@ Retrieves an existing speech by ID.
 
 Creates a new speech.
 
-- **Endpoint:** `POST /speeches/v1`
+- **Endpoint:** `POST /legal-sight/speeches/v1`
 - **Description:** Create a new speech.
 - **Tags:** Speech
 
@@ -66,7 +66,7 @@ Creates a new speech.
 
 Updates an existing speech by ID.
 
-- **Endpoint:** `PUT /speeches/v1/{id}`
+- **Endpoint:** `PUT /legal-sight/speeches/v1/{id}`
 - **Description:** Update an existing speech by ID.
 - **Tags:** Speech
 
@@ -74,7 +74,7 @@ Updates an existing speech by ID.
 
 Deletes an existing speech by ID.
 
-- **Endpoint:** `DELETE /speeches/v1/{id}`
+- **Endpoint:** `DELETE /legal-sight/speeches/v1/{id}`
 - **Description:** Delete an existing speech by ID.
 - **Tags:** Speech
 
@@ -82,7 +82,7 @@ Deletes an existing speech by ID.
 
 Retrieves a list of speeches based on the provided filter.
 
-- **Endpoint:** `GET /speeches/v1/search`
+- **Endpoint:** `GET /legal-sight/speeches/v1/search`
 - **Description:** Retrieve a list of speeches based on the provided filter.
 - **Tags:** Speech
 
@@ -90,7 +90,7 @@ Retrieves a list of speeches based on the provided filter.
 
 Retrieves all speeches.
 
-- **Endpoint:** `GET /speeches/v1`
+- **Endpoint:** `GET /legal-sight/speeches/v1`
 - **Description:** Retrieve all speeches.
 - **Tags:** Speech
 
